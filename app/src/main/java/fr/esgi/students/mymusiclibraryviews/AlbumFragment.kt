@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import fr.esgi.students.mymusiclibraryviews.placeholder.PlaceholderContent
+import fr.esgi.students.mymusiclibraryviews.singletons.VolleyQueue
 
 /**
  * A fragment representing a list of Items.
@@ -16,6 +20,8 @@ import fr.esgi.students.mymusiclibraryviews.placeholder.PlaceholderContent
 class AlbumFragment : Fragment() {
 
     private var columnCount = 1
+    //private lateinit var binding: FragmentItemListBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +29,9 @@ class AlbumFragment : Fragment() {
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
+
+        //binding = FragmentItemListBinding.inflate(layoutInflater)
+
     }
 
     override fun onCreateView(
@@ -47,7 +56,22 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        "https://www.theaudiodb.com/api/v1/json/2/search.php?s=coldplay"
+
+        val url = "https://www.theaudiodb.com/api/v1/json/2/search.php?s=coldplay"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                view.findViewById<TextView>(R.id.textAlbum).text = "Response: %s".format(response.toString())
+            },
+            { error ->
+                view.findViewById<TextView>(R.id.textAlbum).text = "Error " + error.toString()
+            }
+        )
+
+        // Access the RequestQueue through your singleton class.
+        VolleyQueue.getInstance(requireContext()).addToRequestQueue(jsonObjectRequest)
+
     }
 
     companion object {
