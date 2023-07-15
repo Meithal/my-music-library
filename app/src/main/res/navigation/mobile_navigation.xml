@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_rankings">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_rankings"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.rankings.RankingsFragment"
+        android:label="@string/title_rankings"
+        tools:layout="@layout/fragment_rankings" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_search"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_favorites"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>
