@@ -9,12 +9,22 @@
         android:id="@+id/navigation_home"
         android:name="fr.esgi.students.mymusiclibraryviews.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_albumFragment"
+            app:destination="@id/albumFragment"
+            app:launchSingleTop="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="fr.esgi.students.mymusiclibraryviews.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.AlbumFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" />
 
 </navigation>
