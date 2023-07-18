@@ -1,4 +1,4 @@
-package fr.esgi.students.mymusiclibraryviews.ui.home
+package fr.esgi.students.mymusiclibraryviews.ui.pages.rankings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,7 +35,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
 
         return root
     }

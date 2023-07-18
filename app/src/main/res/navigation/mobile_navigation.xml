@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.home.HomeFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.rankings.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_ranking" >
         <action
@@ -18,18 +18,14 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.dashboard.DashboardFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.search.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
     <fragment
         android:id="@+id/albumFragment"
-        android:name="fr.esgi.students.mymusiclibraryviews.AlbumFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.listings.albums.AlbumFragment"
         android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" />
-    <fragment
-        android:id="@+id/musicHitSongFragment"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.rankings.MusicHitSongFragment"
-        android:label="fragment_hitsong_list"
-        tools:layout="@layout/fragment_hitsong_list" />
+        tools:layout="@layout/fragment_artist_album_list" />
 
 </navigation>

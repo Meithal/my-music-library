@@ -1,4 +1,4 @@
-package fr.esgi.students.mymusiclibraryviews.ui.dashboard
+package fr.esgi.students.mymusiclibraryviews.ui.pages.search
 
 import android.os.Bundle
 import android.view.LayoutInflater

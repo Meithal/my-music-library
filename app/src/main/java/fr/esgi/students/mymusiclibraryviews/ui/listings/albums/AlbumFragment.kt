@@ -1,4 +1,4 @@
-package fr.esgi.students.mymusiclibraryviews
+package fr.esgi.students.mymusiclibraryviews.ui.listings.albums
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.placeholder.PlaceholderContent
 import fr.esgi.students.mymusiclibraryviews.singletons.VolleyQueue
 
@@ -38,7 +39,7 @@ class AlbumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_artist_album_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {

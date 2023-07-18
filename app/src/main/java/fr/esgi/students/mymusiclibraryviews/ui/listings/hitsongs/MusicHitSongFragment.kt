@@ -1,4 +1,4 @@
-package fr.esgi.students.mymusiclibraryviews.ui.rankings
+package fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
