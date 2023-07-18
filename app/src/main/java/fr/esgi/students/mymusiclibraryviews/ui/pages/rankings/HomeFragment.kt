@@ -1,5 +1,6 @@
 package fr.esgi.students.mymusiclibraryviews.ui.pages.rankings
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
 import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment
@@ -55,12 +57,11 @@ class HomeFragment : Fragment() {
             R.id.action_navigation_home_to_albumFragment
         ) }
 
-        val sectionsPagerAdapter = MyAdapter(parentFragmentManager)
+        val sectionsPagerAdapter = MyAdapter(parentFragmentManager, resources)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabLayoutHome
         tabs.setupWithViewPager(viewPager)
-
 
     }
 
@@ -69,12 +70,19 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    class MyAdapter(fm: FragmentManager) :
+    class MyAdapter(fm: FragmentManager, val res: Resources) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getCount(): Int {
             return 2
         }
 
+        override fun getPageTitle(position: Int): CharSequence {
+            return when(position) {
+                0 -> res.getString(R.string.tab_top_songs_title)
+                1 -> res.getString(R.string.tab_top_albums_title)
+                else -> res.getString(R.string.tab_top_songs_title)
+            }
+        }
         override fun getItem(position: Int): Fragment {
             return when(position) {
                 0 -> MusicHitSongFragment.newInstance(1)
