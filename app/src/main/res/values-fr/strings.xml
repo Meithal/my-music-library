@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mon spotify</string>
+    <string name="title_home">Classements</string>
+    <string name="title_dashboard">Recherche</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
