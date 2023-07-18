@@ -16,12 +16,41 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/rankings_title"
+
         android:textAppearance="@style/ourTitle"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/fragmentContainerViewHitSongs"
+
+        app:layout_constraintBottom_toTopOf="@id/tabLayoutHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/tabLayoutHome"
+
+        app:layout_constraintTop_toBottomOf="@id/text_home"
+        app:layout_constraintBottom_toTopOf="@id/button"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Songs"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Albums"
+            />
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewHitSongs"
@@ -30,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
 
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutHome"
         app:layout_constraintBottom_toTopOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/text_home"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/fragmentContainerViewHitSongs"
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutHome"
         app:layout_constraintBottom_toBottomOf="parent"
 
         />
