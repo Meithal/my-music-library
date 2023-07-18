@@ -7,10 +7,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
+import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment
+
 
 class HomeFragment : Fragment() {
 
@@ -26,15 +32,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java).setText(
+                requireActivity().resources.getString(R.string.rankings_title)
+            )
 
         _binding = FragmentRankingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         return root
     }
@@ -50,10 +55,33 @@ class HomeFragment : Fragment() {
             R.id.action_navigation_home_to_albumFragment
         ) }
 
+        val sectionsPagerAdapter = MyAdapter(parentFragmentManager)
+        val viewPager: ViewPager = binding.viewPager
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = binding.tabLayoutHome
+        tabs.setupWithViewPager(viewPager)
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    class MyAdapter(fm: FragmentManager) :
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        override fun getCount(): Int {
+            return 2
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return when(position) {
+                0 -> MusicHitSongFragment.newInstance(1)
+                1 -> MusicHitSongFragment.newInstance(2)
+                else -> MusicHitSongFragment.newInstance(1)
+            }
+        }
+    }
+
 }

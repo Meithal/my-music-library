@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyMusicLibraryViews"
-        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MyMusicLibraryViews" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
 
@@ -22,4 +21,13 @@
         <item name="android:textSize">@dimen/abc_text_size_display_1_material</item>
         <item name="android:textColor">?android:textColorSecondary</item>
     </style>
+
+    <style name="Theme.MyMusicLibraryViews.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MyMusicLibraryViews.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyMusicLibraryViews.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

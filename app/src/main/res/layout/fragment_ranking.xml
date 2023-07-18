@@ -31,7 +31,7 @@
         android:id="@+id/tabLayoutHome"
 
         app:layout_constraintTop_toBottomOf="@id/text_home"
-        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintBottom_toTopOf="@id/view_pager"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,13 +52,12 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerViewHitSongs"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment"
-
-        android:layout_width="wrap_content"
+    <androidx.viewpager.widget.ViewPager
+        android:contentDescription="Classements"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@id/tabLayoutHome"
         app:layout_constraintBottom_toTopOf="@id/button"
 
@@ -76,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/tabLayoutHome"
+        app:layout_constraintTop_toBottomOf="@id/view_pager"
         app:layout_constraintBottom_toBottomOf="parent"
 
         />
