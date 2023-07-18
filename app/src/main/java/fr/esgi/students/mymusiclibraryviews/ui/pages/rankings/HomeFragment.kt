@@ -62,7 +62,6 @@ class HomeFragment : Fragment() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabLayoutHome
         tabs.setupWithViewPager(viewPager)
-
     }
 
     override fun onDestroyView() {
