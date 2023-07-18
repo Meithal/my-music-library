@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
             R.id.action_navigation_home_to_albumFragment
         ) }
 
-        val sectionsPagerAdapter = MyAdapter(parentFragmentManager, resources)
+        val sectionsPagerAdapter = MyAdapter(childFragmentManager, resources)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabLayoutHome
