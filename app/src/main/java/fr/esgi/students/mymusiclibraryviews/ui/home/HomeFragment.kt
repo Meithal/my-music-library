@@ -9,13 +9,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.Navigator
 import fr.esgi.students.mymusiclibraryviews.R
-import fr.esgi.students.mymusiclibraryviews.databinding.FragmentHomeBinding
+import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentRankingBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +28,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentRankingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
@@ -45,10 +44,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val args = Bundle()
-        args.putString("artist", "Coldplay");
+        args.putString("artist", "Coldplay")
 
         val button: Button = binding.button
-        button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_albumFragment) }
+        button.setOnClickListener { Navigation.findNavController(view).navigate(
+            R.id.action_navigation_home_to_albumFragment
+        ) }
 
     }
 
