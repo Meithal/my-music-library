@@ -19,6 +19,7 @@ class VolleyQueue constructor(context: Context) {
                 }
             }
     }
+
     val imageLoader: ImageLoader by lazy {
         ImageLoader(requestQueue,
             object : ImageLoader.ImageCache {
