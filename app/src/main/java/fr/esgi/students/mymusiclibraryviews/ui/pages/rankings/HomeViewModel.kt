@@ -8,9 +8,11 @@ import androidx.lifecycle.map
 class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>()
+
     val text: LiveData<String> = _text.map {
         "${_text.value}"
     }
+
 
     fun setText(text: String) {
         _text.value = text

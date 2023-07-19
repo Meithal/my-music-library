@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
 import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment
@@ -34,7 +33,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java).setText(
+            ViewModelProvider(this)[HomeViewModel::class.java].setText(
                 requireActivity().resources.getString(R.string.rankings_title)
             )
 
