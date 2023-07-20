@@ -11,21 +11,19 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_ranking" >
         <action
-            android:id="@+id/action_navigation_home_to_albumFragment"
-            app:destination="@id/albumFragment"
-            app:launchSingleTop="false" />
+            android:id="@+id/action_navigation_home_to_albumPageFragment"
+            app:destination="@id/albumPageFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.search.DashboardFragment"
+        android:id="@+id/navigation_search"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.search.SearchFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
-
     <fragment
-        android:id="@+id/albumFragment"
-        android:name="fr.esgi.students.mymusiclibraryviews.ui.listings.albums.AlbumFragment"
-        android:label="fragment_item_list"
-        tools:layout="@layout/fragment_artist_album_list" />
+        android:id="@+id/albumPageFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.album.AlbumPageFragment"
+        android:label="fragment_album_page_list"
+        tools:layout="@layout/fragment_album_page_list" />
 
 </navigation>

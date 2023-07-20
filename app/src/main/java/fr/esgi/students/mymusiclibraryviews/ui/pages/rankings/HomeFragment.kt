@@ -52,10 +52,6 @@ class HomeFragment : Fragment() {
         val args = Bundle()
         args.putString("artist", "Coldplay")
 
-        val button: Button = binding.button
-        button.setOnClickListener { Navigation.findNavController(view).navigate(
-            R.id.action_navigation_home_to_albumFragment
-        ) }
 
         val sectionsPagerAdapter = MyAdapter(childFragmentManager, resources)
         val viewPager: ViewPager = binding.viewPager
