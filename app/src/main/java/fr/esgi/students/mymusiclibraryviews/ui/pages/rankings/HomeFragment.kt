@@ -5,18 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
-import fr.esgi.students.mymusiclibraryviews.ui.listings.albums.AlbumFragment
+import fr.esgi.students.mymusiclibraryviews.ui.listings.albums.HitAlbumFragment
 import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment
 
 
@@ -81,7 +79,7 @@ class HomeFragment : Fragment() {
         override fun getItem(position: Int): Fragment {
             return when(position) {
                 0 -> MusicHitSongFragment.newInstance(1)
-                1 -> AlbumFragment.newInstance(2)
+                1 -> HitAlbumFragment.newInstance(2)
                 else -> MusicHitSongFragment.newInstance(1)
             }
         }

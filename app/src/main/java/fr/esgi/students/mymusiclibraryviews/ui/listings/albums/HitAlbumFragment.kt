@@ -9,26 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
 import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
-import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Loved
-import fr.esgi.students.mymusiclibraryviews.placeholder.PlaceholderContent
 import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
-import fr.esgi.students.mymusiclibraryviews.singletons.VolleyQueue
-import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongModel
 import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MyAlbumRecyclerViewAdapter
-import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MyMusicHitSongRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.
  */
-class AlbumFragment : Fragment() {
+class HitAlbumFragment : Fragment() {
 
     private var columnCount = 1
     //private lateinit var binding: FragmentItemListBinding
@@ -64,7 +56,7 @@ class AlbumFragment : Fragment() {
                 }
                 adapter = MyAlbumRecyclerViewAdapter(
                     musicHitSongModel.hitTitles,
-                    this@AlbumFragment,
+                    this@HitAlbumFragment,
                     context
                 )
 
@@ -127,7 +119,7 @@ class AlbumFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            AlbumFragment().apply {
+            HitAlbumFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
