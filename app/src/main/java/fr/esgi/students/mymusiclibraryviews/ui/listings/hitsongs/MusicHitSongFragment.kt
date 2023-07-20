@@ -47,8 +47,12 @@ class MusicHitSongFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
+
                 adapter = MyMusicHitSongRecyclerViewAdapter(
-                    musicHitSongModel.hitTitles, this@MusicHitSongFragment)
+                    musicHitSongModel.hitTitles,
+                    this@MusicHitSongFragment,
+                    context
+                )
 
                 musicHitSongModel.hitTitles.observe(viewLifecycleOwner) {
                     adapter!!.notifyDataSetChanged()
@@ -65,7 +69,6 @@ class MusicHitSongFragment : Fragment() {
 
         val homeViewModel =
             ViewModelProvider(this)[MusicHitSongModel::class.java]
-
 
         val tracks = ArrayList<Loved>()
 

@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRankingBinding
+import fr.esgi.students.mymusiclibraryviews.ui.listings.albums.AlbumFragment
 import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MusicHitSongFragment
 
 
@@ -84,7 +85,7 @@ class HomeFragment : Fragment() {
         override fun getItem(position: Int): Fragment {
             return when(position) {
                 0 -> MusicHitSongFragment.newInstance(1)
-                1 -> MusicHitSongFragment.newInstance(2)
+                1 -> AlbumFragment.newInstance(2)
                 else -> MusicHitSongFragment.newInstance(1)
             }
         }
