@@ -49,8 +49,14 @@ class MusicHitSongFragment : Fragment() {
                 }
                 adapter = MyMusicHitSongRecyclerViewAdapter(
                     musicHitSongModel.hitTitles, this@MusicHitSongFragment)
+
+                musicHitSongModel.hitTitles.observe(viewLifecycleOwner) {
+                    adapter!!.notifyDataSetChanged()
+                }
+
             }
         }
+
         return view
     }
 
