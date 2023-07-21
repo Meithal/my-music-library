@@ -27,8 +27,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@id/albumTrackList"
+        app:layout_constraintBottom_toTopOf="@id/intTrackNumber"
         app:layout_constraintTop_toBottomOf="@id/textAlbumArtist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/intTrackNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@id/albumTrackList"
+        app:layout_constraintTop_toBottomOf="@id/textAlbumName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 

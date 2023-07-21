@@ -16,6 +16,7 @@ import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentAlbumPageListBinding
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.AlbumTracks
 import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
 import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.PlaceholderContent
 
@@ -85,14 +86,31 @@ class AlbumPageFragment : Fragment() {
             { res -> Log.i("totoerr", res.toString())
                 Toast.makeText(requireContext(), res.toString(), Toast.LENGTH_LONG).show()})
 
-        val textViewArtist: TextView = binding.textAlbumArtist
-        val textViewAlbum: TextView = binding.textAlbumName
-
         albumModel.album.observe(viewLifecycleOwner) {
             Log.i("art", it.toString())
-            textViewArtist.text = it.strArtist
-            textViewAlbum.text = it.strAlbum
+            binding.textAlbumArtist.text = it.strArtist
+            binding.textAlbumArtist.text = it.strAlbum
         }
+
+        JsonHttpFetcher.fetch(
+            "https://theaudiodb.com/api/v1/json/523532/track.php?m=$albumId",
+            requireContext(),
+            {res ->
+                Log.i("tototracks", res.toString())
+                val tracks = Gson().fromJson(res.toString(), AlbumTracks::class.java)
+                albumModel.setTracks(tracks)
+            },
+            { res ->
+                Toast.makeText(requireContext(), res.toString(), Toast.LENGTH_LONG)
+                    .show()
+            }
+        )
+
+        albumModel.tracks.observe(viewLifecycleOwner) {
+            Log.i("artt", it.toString())
+            binding.intTrackNumber.text = "${it.track.size} tracks"
+        }
+
 
     }
 
