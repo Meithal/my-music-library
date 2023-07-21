@@ -52,6 +52,10 @@ class AlbumPageFragment : Fragment() {
         _binding = FragmentAlbumPageListBinding.inflate(inflater, container, false)
         //val view = inflater.inflate(R.layout.fragment_album_page_list, container, false)
 
+        val albumModel =
+            ViewModelProvider(this)[AlbumPageModel::class.java]
+
+
         val recyclerView = binding.albumTrackList
         // Set the adapter
         with(recyclerView) {
@@ -59,11 +63,15 @@ class AlbumPageFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = MyAlbumTitleRecyclerViewAdapter(PlaceholderContent.ITEMS)
-        }
+            adapter = MyAlbumTitleRecyclerViewAdapter(
+                albumModel.tracks,
+                viewLifecycleOwner
+            )
 
-        val albumModel =
-            ViewModelProvider(this)[AlbumPageModel::class.java]
+            albumModel.tracks.observe(viewLifecycleOwner) {
+                adapter!!.notifyDataSetChanged()
+            }
+        }
 
         return binding.root
     }
@@ -110,8 +118,6 @@ class AlbumPageFragment : Fragment() {
             Log.i("artt", it.toString())
             binding.intTrackNumber.text = "${it.track.size} tracks"
         }
-
-
     }
 
     override fun onDestroyView() {

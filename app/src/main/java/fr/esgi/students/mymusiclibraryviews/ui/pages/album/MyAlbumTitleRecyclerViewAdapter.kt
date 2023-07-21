@@ -4,17 +4,22 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 
 import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.PlaceholderContent.PlaceholderItem
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentAlbumPageBinding
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.AlbumTracks
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class MyAlbumTitleRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
-) : RecyclerView.Adapter<MyAlbumTitleRecyclerViewAdapter.ViewHolder>() {
+    private val values: LiveData<AlbumTracks>,
+    private val lifecycleOwner: LifecycleOwner,
+    ) : RecyclerView.Adapter<MyAlbumTitleRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -29,12 +34,14 @@ class MyAlbumTitleRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        values.observe(lifecycleOwner) {
+            //val item = values[position]
+            holder.idView.text = (position + 1).toString()
+            holder.contentView.text = it.track[position].strTrack
+        }
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = values.value?.track?.size ?: 0
 
     inner class ViewHolder(binding: FragmentAlbumPageBinding) :
         RecyclerView.ViewHolder(binding.root) {
