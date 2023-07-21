@@ -9,4 +9,5 @@
     <string name="tab_top_albums_title">Albums</string>
     <string name="most_loved_titles">Titres les plus appréciés</string>
     <string name="lyrics">Paroles</string>
+    <string name="hello_blank_fragment">Bonjour blank fragment</string>
 </resources>
