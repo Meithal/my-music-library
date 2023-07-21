@@ -6,4 +6,5 @@
     <string name="rankings_title">Rankings</string>
     <string name="tab_top_songs_title">Songs</string>
     <string name="tab_top_albums_title">Albums</string>
+    <string name="most_loved_titles">Most loved titles</string>
 </resources>
