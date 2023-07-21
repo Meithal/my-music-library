@@ -15,7 +15,6 @@ import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
 import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
-import fr.esgi.students.mymusiclibraryviews.ui.listings.hitsongs.MyAlbumRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +24,11 @@ class HitAlbumFragment : Fragment() {
     private var columnCount = 1
     //private lateinit var binding: FragmentItemListBinding
 
+    inner class OnAlbumClick {
+        fun onClick(album: Album) {
+            Log.d("totoclick", album.strAlbum)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +61,8 @@ class HitAlbumFragment : Fragment() {
                 adapter = MyAlbumRecyclerViewAdapter(
                     musicHitSongModel.hitTitles,
                     this@HitAlbumFragment,
-                    context
+                    context,
+                    OnAlbumClick()
                 )
 
                 musicHitSongModel.hitTitles.observe(viewLifecycleOwner) {
