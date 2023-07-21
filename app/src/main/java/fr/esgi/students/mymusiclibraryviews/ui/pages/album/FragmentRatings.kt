@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fr.esgi.students.mymusiclibraryviews.R
+import fr.esgi.students.mymusiclibraryviews.databinding.FragmentAlbumPageListBinding
+import fr.esgi.students.mymusiclibraryviews.databinding.FragmentRatingsBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,6 +20,12 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FragmentRatings : Fragment() {
+    private var _binding: FragmentRatingsBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+
+    private val binding get() = _binding!!
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -26,7 +34,7 @@ class FragmentRatings : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param2 = it.getString("ARG_PARAM2")
         }
     }
 

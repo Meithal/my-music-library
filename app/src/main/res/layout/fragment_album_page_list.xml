@@ -45,17 +45,20 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         />
+    <!--
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.album.FragmentRatings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="196dp"
+        tools:layout_editor_absoluteY="56dp"
         app:layout_constraintBottom_toTopOf="@id/albumTrackList"
         app:layout_constraintTop_toBottomOf="@id/intTrackNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/rating"
-        >
-
-    </androidx.fragment.app.FragmentContainerView>
+        app:layout_constraintEnd_toEndOf="@id/intTrackNumber"
+        />
+    -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/albumTrackList"
@@ -72,4 +75,5 @@
 
 
     </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
