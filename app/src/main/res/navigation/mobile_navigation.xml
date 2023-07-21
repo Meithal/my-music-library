@@ -28,6 +28,19 @@
         <argument
             android:name="albumid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_albumPageFragment_to_trackPageFragment"
+            app:destination="@id/trackPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackPageFragment"
+        android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.track.TrackPageFragment"
+        android:label="fragment_track_page"
+        tools:layout="@layout/fragment_track_page" >
+        <argument
+            android:name="trackId"
+            app:argType="string"
+            android:defaultValue="-1" />
     </fragment>
 
 </navigation>

@@ -12,11 +12,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.databinding.FragmentAlbumPageListBinding
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.AlbumTracks
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Track
 import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
 import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.PlaceholderContent
 
@@ -24,6 +26,22 @@ import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.Placehold
  * A fragment representing a list of Items.
  */
 class AlbumPageFragment : Fragment() {
+
+    inner class OnTrackClick {
+        fun onClick(track: Track) {
+            Log.d("totoclick", track.strAlbum)
+
+            Navigation.findNavController(
+                this@AlbumPageFragment.requireActivity(),R.id.nav_host_fragment_activity_main
+            ).navigate(
+                R.id.action_albumPageFragment_to_trackPageFragment,
+                Bundle().apply {
+                    putString("albumid", track.idAlbum)
+                }
+            )
+        }
+    }
+
 
     private var _binding: FragmentAlbumPageListBinding? = null
     // This property is only valid between onCreateView and
@@ -65,7 +83,8 @@ class AlbumPageFragment : Fragment() {
             }
             adapter = MyAlbumTitleRecyclerViewAdapter(
                 albumModel.tracks,
-                viewLifecycleOwner
+                viewLifecycleOwner,
+                OnTrackClick(),
             )
 
             albumModel.tracks.observe(viewLifecycleOwner) {

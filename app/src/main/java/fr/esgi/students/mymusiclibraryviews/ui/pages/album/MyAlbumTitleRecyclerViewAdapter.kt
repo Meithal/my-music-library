@@ -19,6 +19,7 @@ import fr.esgi.students.mymusiclibraryviews.json_dataclasses.AlbumTracks
 class MyAlbumTitleRecyclerViewAdapter(
     private val values: LiveData<AlbumTracks>,
     private val lifecycleOwner: LifecycleOwner,
+    private val onTrackClick: AlbumPageFragment.OnTrackClick,
     ) : RecyclerView.Adapter<MyAlbumTitleRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +31,6 @@ class MyAlbumTitleRecyclerViewAdapter(
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -38,6 +38,10 @@ class MyAlbumTitleRecyclerViewAdapter(
             //val item = values[position]
             holder.idView.text = (position + 1).toString()
             holder.contentView.text = it.track[position].strTrack
+            val track = it.track[position]
+            holder.itemView.setOnClickListener {
+                onTrackClick.onClick(track)
+            }
         }
     }
 
@@ -52,5 +56,4 @@ class MyAlbumTitleRecyclerViewAdapter(
             return super.toString() + " '" + contentView.text + "'"
         }
     }
-
 }
