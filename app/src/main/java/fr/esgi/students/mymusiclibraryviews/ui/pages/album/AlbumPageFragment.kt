@@ -77,10 +77,12 @@ class AlbumPageFragment : Fragment() {
         val recyclerView = binding.albumTrackList
         // Set the adapter
         with(recyclerView) {
+
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
+
             adapter = MyAlbumTitleRecyclerViewAdapter(
                 albumModel.tracks,
                 viewLifecycleOwner,
