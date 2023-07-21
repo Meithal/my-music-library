@@ -45,6 +45,17 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         />
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/albumTrackList"
+        app:layout_constraintTop_toBottomOf="@id/intTrackNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/rating"
+        >
+
+    </androidx.fragment.app.FragmentContainerView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/albumTrackList"
