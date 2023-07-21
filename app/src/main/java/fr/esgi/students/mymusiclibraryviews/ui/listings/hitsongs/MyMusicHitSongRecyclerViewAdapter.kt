@@ -62,7 +62,7 @@ class MyMusicHitSongRecyclerViewAdapter(
 
 
     override fun getItemCount(): Int {
-        Log.d("Adapter Size ",values.value.toString())
+        //Log.d("Adapter Size ",values.value.toString())
 
         return values.value!!.size
     }

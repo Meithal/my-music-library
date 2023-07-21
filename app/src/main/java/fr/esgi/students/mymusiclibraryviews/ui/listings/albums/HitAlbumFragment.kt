@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
@@ -27,6 +29,15 @@ class HitAlbumFragment : Fragment() {
     inner class OnAlbumClick {
         fun onClick(album: Album) {
             Log.d("totoclick", album.strAlbum)
+
+            val bundle = Bundle()
+            bundle.putString("albumid", album.idAlbum)
+            Navigation.findNavController(
+                this@HitAlbumFragment.requireActivity(),R.id.nav_host_fragment_activity_main
+            ).navigate(
+                R.id.action_navigation_home_to_albumPageFragment,
+                bundle
+            )
         }
     }
 

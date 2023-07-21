@@ -1,6 +1,7 @@
 package fr.esgi.students.mymusiclibraryviews.ui.pages.album
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,7 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
+import fr.esgi.students.mymusiclibraryviews.databinding.FragmentAlbumPageListBinding
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Album
+import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
 import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.PlaceholderContent
 
 /**
@@ -16,13 +24,23 @@ import fr.esgi.students.mymusiclibraryviews.ui.pages.album.placeholder.Placehold
  */
 class AlbumPageFragment : Fragment() {
 
+    private var _binding: FragmentAlbumPageListBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+
+    private val binding get() = _binding!!
+
     private var columnCount = 1
+    private var albumId = "-1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.i("args", arguments?.getString("albumid").toString())
+
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
+            albumId = it.getString("albumid")?:"-1"
         }
     }
 
@@ -30,21 +48,58 @@ class AlbumPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_album_page_list, container, false)
+        _binding = FragmentAlbumPageListBinding.inflate(inflater, container, false)
+        //val view = inflater.inflate(R.layout.fragment_album_page_list, container, false)
 
+        val recyclerView = binding.albumTrackList
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyAlbumTitleRecyclerViewAdapter(PlaceholderContent.ITEMS)
+        with(recyclerView) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
             }
+            adapter = MyAlbumTitleRecyclerViewAdapter(PlaceholderContent.ITEMS)
         }
-        return view
+
+        val albumModel =
+            ViewModelProvider(this)[AlbumPageModel::class.java]
+
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val albumModel =
+            ViewModelProvider(this)[AlbumPageModel::class.java]
+
+        JsonHttpFetcher.fetch(
+            "https://theaudiodb.com/api/v1/json/523532/album.php?m=$albumId",
+            requireContext(),
+            {res ->
+                Log.i("toto", res.toString())
+                val albums = res.getJSONArray("album")
+                val album = Gson().fromJson(albums[0].toString(), Album::class.java)
+                albumModel.setAlbum(album)
+            },
+            { res -> Log.i("totoerr", res.toString())
+                Toast.makeText(requireContext(), res.toString(), Toast.LENGTH_LONG).show()})
+
+        val textViewArtist: TextView = binding.textAlbumArtist
+        val textViewAlbum: TextView = binding.textAlbumName
+
+        albumModel.album.observe(viewLifecycleOwner) {
+            Log.i("art", it.toString())
+            textViewArtist.text = it.strArtist
+            textViewAlbum.text = it.strAlbum
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
     companion object {
 
         // TODO: Customize parameter argument names

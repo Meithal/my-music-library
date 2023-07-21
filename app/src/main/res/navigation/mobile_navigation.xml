@@ -24,6 +24,10 @@
         android:id="@+id/albumPageFragment"
         android:name="fr.esgi.students.mymusiclibraryviews.ui.pages.album.AlbumPageFragment"
         android:label="fragment_album_page_list"
-        tools:layout="@layout/fragment_album_page_list" />
+        tools:layout="@layout/fragment_album_page_list" >
+        <argument
+            android:name="albumid"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
