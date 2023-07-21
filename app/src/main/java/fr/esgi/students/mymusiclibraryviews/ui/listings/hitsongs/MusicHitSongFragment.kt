@@ -11,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.gson.Gson
 import fr.esgi.students.mymusiclibraryviews.R
 import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Loved
+import fr.esgi.students.mymusiclibraryviews.json_dataclasses.Track
 import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
 
 /**
@@ -22,6 +24,22 @@ import fr.esgi.students.mymusiclibraryviews.singletons.JsonHttpFetcher
 class MusicHitSongFragment : Fragment() {
 
     private var columnCount = 1
+
+    inner class OnTrackClick {
+        fun onClick(track: String) {
+            Log.d("totoclick", track)
+
+            Navigation.findNavController(
+                this@MusicHitSongFragment.requireActivity(),R.id.nav_host_fragment_activity_main
+            ).navigate(
+                R.id.action_navigation_home_to_trackPageFragment,
+                Bundle().apply {
+                    putString("trackId", track)
+                }
+            )
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +69,8 @@ class MusicHitSongFragment : Fragment() {
                 adapter = MyMusicHitSongRecyclerViewAdapter(
                     musicHitSongModel.hitTitles,
                     this@MusicHitSongFragment,
-                    context
+                    context,
+                    OnTrackClick()
                 )
 
                 musicHitSongModel.hitTitles.observe(viewLifecycleOwner) {

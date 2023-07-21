@@ -8,4 +8,5 @@
     <string name="tab_top_songs_title">Titres</string>
     <string name="tab_top_albums_title">Albums</string>
     <string name="most_loved_titles">Titres les plus appréciés</string>
+    <string name="lyrics">Paroles</string>
 </resources>

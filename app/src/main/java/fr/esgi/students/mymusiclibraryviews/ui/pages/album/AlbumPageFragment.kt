@@ -36,7 +36,7 @@ class AlbumPageFragment : Fragment() {
             ).navigate(
                 R.id.action_albumPageFragment_to_trackPageFragment,
                 Bundle().apply {
-                    putString("albumid", track.idAlbum)
+                    putString("trackId", track.idTrack)
                 }
             )
         }

@@ -24,6 +24,7 @@ class MyMusicHitSongRecyclerViewAdapter(
     private val values: LiveData<List<Loved>>,
     private val lifecycleOwner: LifecycleOwner,
     private val context: Context,
+    private val onTrackClick: MusicHitSongFragment.OnTrackClick,
 ) : RecyclerView.Adapter<MyMusicHitSongRecyclerViewAdapter.ViewHolder>() {
 
     var listSize = 2
@@ -57,6 +58,9 @@ class MyMusicHitSongRecyclerViewAdapter(
                 .placeholder(R.drawable.ic_dashboard_black_24dp)
                 .into(holder.imageView)
             // holder.imageView =
+            holder.itemView.setOnClickListener {
+                onTrackClick.onClick(track = item.strTrack)
+            }
         }
     }
 
